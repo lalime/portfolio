@@ -1,2 +1,2 @@
 # portfolio
-My custom portfolio
+My personal portfolio
