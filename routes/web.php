@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Clients;
 use App\Http\Livewire\ContactMe;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     })->name('dashboard');
 
     Route::get('/messages', ContactMe::class)->name('dash.message');
+    Route::get('/customers', Clients::class)->name('dash.customers');
     // Route::get('messages', ContactMe::class);
 
 });
