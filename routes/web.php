@@ -34,8 +34,8 @@ Route::middleware(['auth:sanctum', 'verified'])
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
-    
-    Route::get('/messages', ContactMe::class);
+
+    Route::get('/messages', ContactMe::class)->name('dash.message');
     // Route::get('messages', ContactMe::class);
 
 });

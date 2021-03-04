@@ -23,17 +23,20 @@
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="px-4 py-2 w-20">No.</th>
-                        <th class="px-4 py-2">Title</th>
-                        <th class="px-4 py-2">Desc</th>
+                        <th class="px-4 py-2 text-left">Sender</th>
+                        <th class="px-4 py-2 text-left">Subject</th>
+                        <th class="px-4 py-2 text-left">Date</th>
                         <th class="px-4 py-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    
                     @foreach($messages as $message)
                     <tr>
                         <td class="border px-4 py-2">{{ $message->id }}</td>
-                        <td class="border px-4 py-2">{{ $message->title }}</td>
-                        <td class="border px-4 py-2">{{ $message->description}}</td>
+                        <td class="border px-4 py-2">{{ $message->name }}<br/>{{ $message->email }}</td>
+                        <td class="border px-4 py-2">{{ $message->subject}}</td>
+                        <td class="border px-4 py-2">{{ optional($message->created_at)->format('d M Y')}}</td>
                         <td class="border px-4 py-2">
                             <button wire:click="edit({{ $message->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
                             <button wire:click="delete({{ $message->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
