@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Customers messages.
+        Contact messages.
     </h2>
 </x-slot>
 <div class="py-12">
@@ -34,7 +34,7 @@
                     @foreach($messages as $message)
                     <tr>
                         <td class="border px-4 py-2">{{ $message->id }}</td>
-                        <td class="border px-4 py-2">{{ $message->name }}<br/>{{ $message->email }}</td>
+                        <td class="border px-4 py-2">{{ $message->name }}<br/><a class="text-gray-500" href="mailto:{{ $message->email }}">{{ $message->email }}</a></td>
                         <td class="border px-4 py-2">{{ $message->subject}}</td>
                         <td class="border px-4 py-2">{{ optional($message->created_at)->format('d M Y')}}</td>
                         <td class="border px-4 py-2">

@@ -19,10 +19,9 @@ class ContactMe extends Component
     public function render()
     {
         $this->messages = Message::all();
-        return view('livewire.contact-me');
+        return view('livewire.contacts.index');
     }
 
-   
     /**
      * The attributes that are mass assignable.
      *
