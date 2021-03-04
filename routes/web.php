@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ContactMe;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +25,24 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return Inertia::render('dashboard');
+// })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->prefix('/dashboard')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    
+    Route::get('/messages', ContactMe::class);
+    // Route::get('messages', ContactMe::class);
+
+});
+
+
+
+// Route::get('/contact', [ContactUsFormController::class, 'createForm']);
+
+// Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm'])->name('contact.store');
+// Leol@l1;3
