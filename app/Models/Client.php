@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Client extends Model
 {
@@ -24,4 +25,9 @@ class Client extends Model
     protected $fillable = [
         'title', 'logo', 'website',
     ];
+
+    public function getLogo()
+    {
+        return Storage::disk('public')->url($this->logo);
+    }
 }

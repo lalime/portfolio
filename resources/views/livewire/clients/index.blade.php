@@ -17,6 +17,10 @@
             @endif
             <button wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Add Client</button>
             
+            @if($isOpen)
+                @include('livewire.clients.create')
+            @endif
+
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
@@ -32,7 +36,7 @@
                     @foreach($clients as $client)
                     <tr>
                         <td class="border px-4 py-2">{{ $client->id }}</td>
-                        <td class="border px-4 py-2">{{ $client->logo }}</td>
+                        <td class="border px-4 py-2">{{ $client->logo? $client->getLogo():'' }}</td>
                         <td class="border px-4 py-2">{{ $client->title}}</td>
                         <td class="border px-4 py-2"><a href="{{ $client->website }}">{{ $client->website }}</a></td>
                         <td class="border px-4 py-2">

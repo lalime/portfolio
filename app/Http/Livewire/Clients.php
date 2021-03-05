@@ -12,14 +12,20 @@ class Clients extends Component
     
     public $clients;
     public Client $client;
+    public $logo;
     public $isOpen = 0;
     public $client_id;
 
     protected $rules = [
         'client.title' => 'required|min:3',
         'client.website' => 'nullable|url',
-        'client.photos.*' => 'image|max:1024|nullable',
+        'logo' => 'image|max:1024|nullable',
     ];
+
+    public function mount()
+    {
+        $this->client = new Client;
+    }
 
     public function render()
     {
@@ -67,25 +73,21 @@ class Clients extends Component
      */
     private function resetInputFields()
     {
-        $this->title = '';
-        $this->logo = '';
-        $this->website = '';
+        $this->client->title = '';
+        $this->client->logo = '';
+        $this->client->website = '';
         $this->client_id = '';
     }
 
-    public function save()
+    public function store()
     {
         $this->validate();
+        // dump($this->client);
+        $logoUrl = $this->logo->store('clients', 'public');
 
-        $this->logo = $this->logo->store('clients');
-
-        Client::create([
-            'title' => $this->title,
-            'logo' => $this->logo,
-            'website' => $this->website,
-        ]);
+        $this->client->fill(['logo' => $logoUrl]); 
+        // dd($this->client);
         $this->client->save();
-
 
         session()->flash('message', 'Client successfully created.');
 
