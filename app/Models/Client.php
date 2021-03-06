@@ -26,8 +26,11 @@ class Client extends Model
         'title', 'logo', 'website',
     ];
 
-    public function getLogo()
+    public function logoUrl()
     {
-        return Storage::disk('public')->url($this->logo);
+        if ($this->logo && Storage::disk('public')->exists($this->logo))
+            return Storage::disk('public')->url($this->logo);
+
+        return 'https://www.gravatar.com/205e460b479e2e5b48aec07710c08d50';
     }
 }
