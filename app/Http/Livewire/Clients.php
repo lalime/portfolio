@@ -14,7 +14,7 @@ class Clients extends Component
     public Client $client;
     public $logo;
     public $isOpen = 0;
-    public $client_id;
+    // public $client_id;
 
     protected $rules = [
         'client.title' => 'required|min:3',
@@ -42,7 +42,6 @@ class Clients extends Component
     {
         $this->resetInputFields();
         $this->openModal();
-        // return view('livewire.clients.index');
     }
 
    
@@ -65,6 +64,19 @@ class Clients extends Component
     {
         $this->isOpen = false;
     }
+   
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public function edit(Client $client)
+    {
+        $this->client = $client;
+
+        // $this->resetInputFields();
+        $this->openModal();
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -76,17 +88,18 @@ class Clients extends Component
         $this->client->title = '';
         $this->client->logo = '';
         $this->client->website = '';
-        $this->client_id = '';
     }
 
     public function store()
     {
         $this->validate();
-        // dump($this->client);
-        $logoUrl = $this->logo->store('clients', 'public');
-
-        $this->client->fill(['logo' => $logoUrl]); 
-        // dd($this->client);
+        
+        if ($this->logo) {
+            $logoUrl = $this->logo->store('clients', 'public');
+            // Fill logo field
+            $this->client->fill(['logo' => $logoUrl]); 
+        }
+        
         $this->client->save();
 
         session()->flash('message', 'Client successfully created.');
