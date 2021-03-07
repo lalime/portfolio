@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Livewire\Biography;
 use App\Http\Livewire\Clients;
 use App\Http\Livewire\ContactMe;
+use App\Http\Livewire\Pages;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,8 +38,11 @@ Route::middleware(['auth:sanctum', 'verified'])
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/biography', Biography::class)->name('dashboard.biography');
     Route::get('/messages', ContactMe::class)->name('dash.message');
     Route::get('/customers', Clients::class)->name('dash.customers');
+    Route::get('/pages', Pages::class)->name('dashboard.pages');
+    Route::get('/posts', Clients::class)->name('dashboard.posts');
     // Route::get('messages', ContactMe::class);
 
 });

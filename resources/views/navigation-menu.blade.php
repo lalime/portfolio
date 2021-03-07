@@ -15,12 +15,46 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('dashboard.biography') }}" :active="request()->routeIs('dashboard.biography')">
+                        {{ __('Biography') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('dash.customers') }}" :active="request()->routeIs('dash.customers')">
                         {{ __('Clients') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('dash.message') }}" :active="request()->routeIs('dash.message')">
                         {{ __('Messages') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('dashboard.pages') }}" :active="request()->routeIs('dashboard.pages')">
+                        {{ __('Pages') }}
+                    </x-jet-nav-link>
+                    <div class="relative inline-flex items-center pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+
+                        <x-jet-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                <span class="inline-flex rounded-md">
+                                    <button type="button" class="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                        Blog
+                                    </button>
+                                </span>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <!-- Blog Management -->
+
+                                <x-jet-dropdown-link href="{{ route('dashboard.posts') }}">
+                                    {{ __('Posts') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('dashboard.posts') }}">
+                                    {{ __('Categories') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('dashboard.posts') }}">
+                                    {{ __('Tags') }}
+                                </x-jet-dropdown-link>
+                            </x-slot>
+                        </x-jet-dropdown>
+                    </div>
                 </div>
             </div>
 
