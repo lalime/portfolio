@@ -10,11 +10,10 @@ class Clients extends Component
 {
     use WithFileUploads;
     
-    public $clients;
     public Client $client;
     public $logo;
     public $isOpen = 0;
-    // public $client_id;
+    public $client_id;
 
     protected $rules = [
         'client.title' => 'required|min:3',
@@ -29,8 +28,11 @@ class Clients extends Component
 
     public function render()
     {
-        $this->clients = Client::all();
-        return view('livewire.clients.index');
+        return view('livewire.clients.index', 
+            [
+                'clients' => Client::paginate(10)
+            ]
+        );
     }
 
     /**
@@ -74,7 +76,6 @@ class Clients extends Component
     {
         $this->client = $client;
 
-        // $this->resetInputFields();
         $this->openModal();
     }
 

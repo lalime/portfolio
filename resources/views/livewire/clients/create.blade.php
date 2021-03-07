@@ -12,23 +12,28 @@
 
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="">
+                        
                         <div class="mb-4">
-                            <label for="exampleFormControlInput1"
-                                class="block text-gray-700 text-sm font-bold mb-2">Logo :</label>
-                                @if ($client->logo)
-                                    Photo Preview:
-                                    <img src="{{ $client->logoUrl() }}">
-                                @endif
-                            <input type="file"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                placeholder="Select Logo" wire:model="logo">
+                            @if ($client->logo)
+                            Thumbnail Preview:
+                                <img src="{{ $client->logoUrl() }}">
+                            @endif
+
+                                <div class="block text-gray-700 _text-sm font-bold mb-2"> <span>Thumbnail</span>
+                                    <div class="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                                        <div class="absolute">
+                                            <div class="flex flex-col items-center "> <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> <span class="block text-gray-400 font-normal">Attach you files here</span> <span class="block text-gray-400 font-normal">or</span> <span class="block text-blue-400 font-normal">Browse files</span> </div>
+                                        </div> <input type="file" class="h-full w-full opacity-0" name="" wire:model="logo">
+                                    </div>
+                                    <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.doc only</span> <span class="flex items-center "><i class="fa fa-lock mr-1"></i> secure</span> </div>
+                                </div>
                             @error('logo') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-4">
                             <label for="exampleFormControlInput1"
                                 class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
                             <input type="text"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                 placeholder="Enter Title" wire:model="client.title">
                             @error('client.title') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
@@ -36,7 +41,7 @@
                             <label for="exampleFormControlInput2"
                                 class="block text-gray-700 text-sm font-bold mb-2">Website:</label>
                             <input type="text"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                 placeholder="Url website" wire:model="client.website">
                             @error('client.website') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
